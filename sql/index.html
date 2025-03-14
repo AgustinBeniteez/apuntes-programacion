@@ -54,7 +54,7 @@
     <nav class="top-nav">
         <div class="nav-content">
             <ul class="nav-links">
-                <li><a href="/"></svg>Home</a></li>
+                <li><a href="../"></svg>Home</a></li>
                 <li><a href="/git/"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
                 <li><a href="/js/"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
                 <li><a href="/sql/"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
@@ -100,29 +100,312 @@
             <div class="content-area">
                 <div id="fundamentals-content" class="topic-content">
                     <h2>Fundamentos de Bases de Datos</h2>
-                    <ul class="topic-list">
-                        <li>Conceptos básicos de bases de datos relacionales</li>
-                        <li>Diseño de esquemas y normalización</li>
-                        <li>Tipos de datos y restricciones</li>
-                    </ul>
+                    
+                    <h3>Conceptos básicos de bases de datos relacionales</h3>
+                    <p>Una base de datos relacional organiza los datos en tablas con filas y columnas:</p>
+                    <div class="code-block">
+                        <pre><code>-- Crear una tabla
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    fecha_registro DATE DEFAULT CURRENT_DATE
+);</code></pre>
+                    </div>
+                    
+                    <h3>Diseño de esquemas y normalización</h3>
+                    <p>La normalización ayuda a eliminar la redundancia y mejorar la integridad de los datos:</p>
+                    <div class="code-block">
+                        <pre><code>-- Ejemplo de esquema normalizado
+CREATE TABLE categorias (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE productos (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10, 2),
+    categoria_id INT,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+);</code></pre>
+                    </div>
+                    
+                    <h3>Tipos de datos y restricciones</h3>
+                    <p>SQL ofrece varios tipos de datos y restricciones para mantener la integridad:</p>
+                    <div class="code-block">
+                        <pre><code>-- Tipos de datos comunes
+INT               -- Números enteros
+DECIMAL(p, s)     -- Números decimales con precisión p y escala s
+VARCHAR(n)        -- Cadenas de texto de longitud variable
+DATE              -- Fechas
+TIMESTAMP         -- Fecha y hora
+BOOLEAN           -- Valores verdadero/falso
+
+-- Restricciones
+PRIMARY KEY       -- Clave primaria, identifica de forma única cada fila
+FOREIGN KEY       -- Clave foránea, mantiene la integridad referencial
+UNIQUE            -- Garantiza valores únicos en una columna
+NOT NULL          -- No permite valores nulos
+CHECK             -- Valida que los datos cumplan una condición</code></pre>
+                    </div>
+                    
+                    <div class="practice-example">
+                        <h3>Ejercicio práctico: Diseño de una base de datos</h3>
+                        <div class="description">
+                            <p>Diseña un esquema de base de datos para una biblioteca que almacene información sobre libros, autores y préstamos.</p>
+                        </div>
+                        <button class="solution-toggle">Ver solución</button>
+                        <div class="solution">
+                            <div class="code-block">
+                                <pre><code>-- Tabla de autores
+CREATE TABLE autores (
+    autor_id INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    fecha_nacimiento DATE
+);
+
+-- Tabla de libros
+CREATE TABLE libros (
+    libro_id INT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    isbn VARCHAR(13) UNIQUE,
+    anio_publicacion INT,
+    editorial VARCHAR(50),
+    disponible BOOLEAN DEFAULT TRUE
+);
+
+-- Tabla de relación entre libros y autores (muchos a muchos)
+CREATE TABLE libro_autor (
+    libro_id INT,
+    autor_id INT,
+    PRIMARY KEY (libro_id, autor_id),
+    FOREIGN KEY (libro_id) REFERENCES libros(libro_id),
+    FOREIGN KEY (autor_id) REFERENCES autores(autor_id)
+);
+
+-- Tabla de usuarios
+CREATE TABLE usuarios (
+    usuario_id INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    telefono VARCHAR(15)
+);
+
+-- Tabla de préstamos
+CREATE TABLE prestamos (
+    prestamo_id INT PRIMARY KEY,
+    libro_id INT,
+    usuario_id INT,
+    fecha_prestamo DATE NOT NULL DEFAULT CURRENT_DATE,
+    fecha_devolucion_prevista DATE NOT NULL,
+    fecha_devolucion_real DATE,
+    FOREIGN KEY (libro_id) REFERENCES libros(libro_id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id)
+);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-section">
+                        <label>
+                            <input type="checkbox" class="completion-checkbox" data-language="sql" data-section="fundamentals">
+                            Marcar como completado
+                        </label>
+                    </div>
                 </div>
 
                 <div id="queries-content" class="topic-content" style="display: none;">
                     <h2>Consultas SQL</h2>
-                    <ul class="topic-list">
-                        <li>SELECT, INSERT, UPDATE, DELETE</li>
-                        <li>JOIN y subconsultas</li>
-                        <li>Funciones agregadas y GROUP BY</li>
-                    </ul>
+                    
+                    <h3>SELECT, INSERT, UPDATE, DELETE</h3>
+                    <p>Las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) son fundamentales en SQL:</p>
+                    <div class="code-block">
+                        <pre><code>-- SELECT: Consultar datos
+SELECT * FROM usuarios;
+SELECT nombre, email FROM usuarios WHERE id > 100;
+
+-- INSERT: Insertar datos
+INSERT INTO usuarios (nombre, email) VALUES ('Ana García', 'ana@ejemplo.com');
+
+-- UPDATE: Actualizar datos
+UPDATE usuarios SET email = 'nuevo@ejemplo.com' WHERE id = 5;
+
+-- DELETE: Eliminar datos
+DELETE FROM usuarios WHERE id = 10;</code></pre>
+                    </div>
+                    
+                    <h3>JOIN y subconsultas</h3>
+                    <p>Los JOIN permiten combinar datos de múltiples tablas:</p>
+                    <div class="code-block">
+                        <pre><code>-- INNER JOIN: Solo filas que coinciden en ambas tablas
+SELECT p.nombre, c.nombre as categoria
+FROM productos p
+INNER JOIN categorias c ON p.categoria_id = c.id;
+
+-- LEFT JOIN: Todas las filas de la tabla izquierda
+SELECT u.nombre, p.fecha_prestamo
+FROM usuarios u
+LEFT JOIN prestamos p ON u.id = p.usuario_id;
+
+-- Subconsultas
+SELECT nombre
+FROM productos
+WHERE precio > (SELECT AVG(precio) FROM productos);</code></pre>
+                    </div>
+                    
+                    <h3>Funciones agregadas y GROUP BY</h3>
+                    <p>Las funciones agregadas realizan cálculos sobre conjuntos de filas:</p>
+                    <div class="code-block">
+                        <pre><code>-- Funciones agregadas
+SELECT COUNT(*) FROM usuarios;  -- Contar filas
+SELECT AVG(precio) FROM productos;  -- Promedio
+SELECT MAX(precio) FROM productos;  -- Valor máximo
+SELECT MIN(precio) FROM productos;  -- Valor mínimo
+SELECT SUM(precio) FROM productos;  -- Suma
+
+-- GROUP BY: Agrupar resultados
+SELECT categoria_id, COUNT(*) as total_productos
+FROM productos
+GROUP BY categoria_id;
+
+-- HAVING: Filtrar grupos
+SELECT categoria_id, AVG(precio) as precio_promedio
+FROM productos
+GROUP BY categoria_id
+HAVING AVG(precio) > 100;</code></pre>
+                    </div>
+                    
+                    <div class="practice-example">
+                        <h3>Ejercicio práctico: Consultas avanzadas</h3>
+                        <div class="description">
+                            <p>Dada una base de datos de una tienda con tablas de clientes, productos, pedidos y detalles_pedido, escribe consultas SQL para:</p>
+                            <ol>
+                                <li>Listar los 5 productos más vendidos</li>
+                                <li>Encontrar clientes que no han realizado compras en el último año</li>
+                            </ol>
+                        </div>
+                        <button class="solution-toggle">Ver solución</button>
+                        <div class="solution">
+                            <div class="code-block">
+                                <pre><code>-- 1. Los 5 productos más vendidos
+SELECT p.nombre, SUM(dp.cantidad) as total_vendido
+FROM productos p
+INNER JOIN detalles_pedido dp ON p.producto_id = dp.producto_id
+GROUP BY p.producto_id, p.nombre
+ORDER BY total_vendido DESC
+LIMIT 5;
+
+-- 2. Clientes sin compras en el último año
+SELECT c.cliente_id, c.nombre, c.apellido
+FROM clientes c
+LEFT JOIN pedidos p ON c.cliente_id = p.cliente_id AND p.fecha_pedido >= DATE_SUB(CURRENT_DATE, INTERVAL 1 YEAR)
+WHERE p.pedido_id IS NULL;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-section">
+                        <label>
+                            <input type="checkbox" class="completion-checkbox" data-language="sql" data-section="queries">
+                            Marcar como completado
+                        </label>
+                    </div>
                 </div>
 
                 <div id="management-content" class="topic-content" style="display: none;">
                     <h2>Gestión de Bases de Datos</h2>
-                    <ul class="topic-list">
-                        <li>Índices y optimización</li>
-                        <li>Transacciones y ACID</li>
-                        <li>Seguridad y permisos</li>
-                    </ul>
+                    
+                    <h3>Índices y optimización</h3>
+                    <p>Los índices mejoran el rendimiento de las consultas:</p>
+                    <div class="code-block">
+                        <pre><code>-- Crear un índice
+CREATE INDEX idx_usuarios_email ON usuarios(email);
+
+-- Índice compuesto (múltiples columnas)
+CREATE INDEX idx_productos_cat_precio ON productos(categoria_id, precio);
+
+-- Eliminar un índice
+DROP INDEX idx_usuarios_email;
+
+-- Analizar el rendimiento de una consulta
+EXPLAIN SELECT * FROM usuarios WHERE email = 'ejemplo@mail.com';</code></pre>
+                    </div>
+                    
+                    <h3>Transacciones y ACID</h3>
+                    <p>Las transacciones garantizan la integridad de los datos:</p>
+                    <div class="code-block">
+                        <pre><code>-- Iniciar una transacción
+BEGIN TRANSACTION;
+
+-- Operaciones dentro de la transacción
+UPDATE cuentas SET saldo = saldo - 1000 WHERE id = 1;
+UPDATE cuentas SET saldo = saldo + 1000 WHERE id = 2;
+
+-- Si todo está bien, confirmar los cambios
+COMMIT;
+
+-- Si hay un problema, deshacer los cambios
+-- ROLLBACK;</code></pre>
+                    </div>
+                    
+                    <h3>Seguridad y permisos</h3>
+                    <p>Control de acceso a la base de datos:</p>
+                    <div class="code-block">
+                        <pre><code>-- Crear un usuario
+CREATE USER 'usuario_lectura'@'localhost' IDENTIFIED BY 'contraseña';
+
+-- Otorgar permisos
+GRANT SELECT ON base_datos.* TO 'usuario_lectura'@'localhost';
+
+-- Permisos más específicos
+GRANT SELECT, INSERT, UPDATE ON base_datos.productos TO 'usuario_admin'@'localhost';
+
+-- Revocar permisos
+REVOKE INSERT ON base_datos.productos FROM 'usuario_admin'@'localhost';
+
+-- Eliminar usuario
+DROP USER 'usuario_lectura'@'localhost';</code></pre>
+                    </div>
+                    
+                    <div class="practice-example">
+                        <h3>Ejercicio práctico: Optimización de consultas</h3>
+                        <div class="description">
+                            <p>Tienes una tabla de ventas con millones de registros que está teniendo problemas de rendimiento. Propón una solución utilizando índices y explica cómo verificar la mejora.</p>
+                        </div>
+                        <button class="solution-toggle">Ver solución</button>
+                        <div class="solution">
+                            <div class="code-block">
+                                <pre><code>-- 1. Analizar las consultas problemáticas
+EXPLAIN SELECT * FROM ventas WHERE fecha BETWEEN '2023-01-01' AND '2023-12-31';
+
+-- 2. Crear índices apropiados
+CREATE INDEX idx_ventas_fecha ON ventas(fecha);
+CREATE INDEX idx_ventas_producto_fecha ON ventas(producto_id, fecha);
+
+-- 3. Verificar la mejora con EXPLAIN
+EXPLAIN SELECT * FROM ventas WHERE fecha BETWEEN '2023-01-01' AND '2023-12-31';
+
+-- 4. Considerar particionamiento para tablas muy grandes
+ALTER TABLE ventas
+PARTITION BY RANGE (YEAR(fecha)) (
+    PARTITION p2021 VALUES LESS THAN (2022),
+    PARTITION p2022 VALUES LESS THAN (2023),
+    PARTITION p2023 VALUES LESS THAN (2024),
+    PARTITION p2024 VALUES LESS THAN (2025)
+);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-section">
+                        <label>
+                            <input type="checkbox" class="completion-checkbox" data-language="sql" data-section="management">
+                            Marcar como completado
+                        </label>
+                    </div>
                 </div>
 
                 <div class="content-navigation">

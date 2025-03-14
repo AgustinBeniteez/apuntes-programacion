@@ -44,7 +44,7 @@
     <nav class="top-nav">
         <div class="nav-content">
             <ul class="nav-links">
-                <li><a href="/"></svg>Home</a></li>
+                <li><a href="../"></svg>Home</a></li>
                 <li><a href="/git/"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
                 <li><a href="/js/"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
                 <li><a href="/sql/"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
@@ -97,12 +97,173 @@
             <div class="content-area">
                 <div id="fundamentals-content" class="topic-content">
                     <h2>Fundamentos</h2>
-                    <ul class="topic-list">
-                        <li>Variables y tipos de datos</li>
-                        <li>Operadores y expresiones</li>
-                        <li>Estructuras de control</li>
-                        <li>Bucles y iteraciones</li>
-                    </ul>
+                    
+                    <h3>Variables y tipos de datos</h3>
+                    <p>JavaScript tiene varios tipos de datos primitivos y objetos:</p>
+                    <div class="code-block">
+                        <pre><code>// Variables con let y const
+let nombre = "María";
+const PI = 3.14159;
+
+// Tipos de datos
+let texto = "Hola mundo";     // String
+let numero = 42;             // Number
+let esVerdadero = true;      // Boolean
+let noDefinido;              // undefined
+let nulo = null;             // null
+let simbolo = Symbol("id"); // Symbol
+let bigInt = 9007199254740991n; // BigInt
+
+// Objetos
+let persona = {
+    nombre: "Juan",
+    edad: 30
+};</code></pre>
+                    </div>
+                    
+                    <h3>Operadores y expresiones</h3>
+                    <p>JavaScript incluye operadores aritméticos, de comparación y lógicos:</p>
+                    <div class="code-block">
+                        <pre><code>// Operadores aritméticos
+let suma = 5 + 3;        // 8
+let resta = 10 - 4;      // 6
+let multiplicacion = 3 * 4; // 12
+let division = 20 / 5;   // 4
+let modulo = 10 % 3;     // 1
+
+// Operadores de comparación
+let esIgual = 5 == "5";     // true (compara valor)
+let esEstrictamenteIgual = 5 === "5"; // false (compara valor y tipo)
+let esMayor = 10 > 5;        // true
+let esMenorIgual = 7 <= 7;   // true
+
+// Operadores lógicos
+let and = true && false;     // false
+let or = true || false;      // true
+let not = !true;             // false</code></pre>
+                    </div>
+                    
+                    <h3>Estructuras de control</h3>
+                    <p>Las estructuras condicionales permiten ejecutar código según se cumplan ciertas condiciones:</p>
+                    <div class="code-block">
+                        <pre><code>// if-else
+let edad = 18;
+
+if (edad >= 18) {
+    console.log("Eres mayor de edad");
+} else {
+    console.log("Eres menor de edad");
+}
+
+// if-else if-else
+let nota = 85;
+
+if (nota >= 90) {
+    console.log("Sobresaliente");
+} else if (nota >= 70) {
+    console.log("Notable");
+} else if (nota >= 60) {
+    console.log("Aprobado");
+} else {
+    console.log("Suspenso");
+}
+
+// switch
+let dia = 3;
+let nombreDia;
+
+switch (dia) {
+    case 1:
+        nombreDia = "Lunes";
+        break;
+    case 2:
+        nombreDia = "Martes";
+        break;
+    case 3:
+        nombreDia = "Miércoles";
+        break;
+    default:
+        nombreDia = "Otro día";
+}</code></pre>
+                    </div>
+                    
+                    <h3>Bucles e iteraciones</h3>
+                    <p>Los bucles permiten ejecutar código repetidamente:</p>
+                    <div class="code-block">
+                        <pre><code>// for
+for (let i = 0; i < 5; i++) {
+    console.log(`Iteración ${i}`);
+}
+
+// while
+let contador = 0;
+while (contador < 5) {
+    console.log(`Contador: ${contador}`);
+    contador++;
+}
+
+// do-while
+let j = 0;
+do {
+    console.log(`j vale ${j}`);
+    j++;
+} while (j < 3);
+
+// for...of (para arrays)
+let frutas = ["manzana", "banana", "naranja"];
+for (let fruta of frutas) {
+    console.log(fruta);
+}
+
+// for...in (para objetos)
+let persona = {nombre: "Ana", edad: 25, ciudad: "Madrid"};
+for (let propiedad in persona) {
+    console.log(`${propiedad}: ${persona[propiedad]}`);
+}</code></pre>
+                    </div>
+                    
+                    <div class="practice-example">
+                        <h3>Ejercicio práctico: Calculadora simple</h3>
+                        <div class="description">
+                            <p>Crea una función que reciba dos números y un operador (+, -, *, /) y devuelva el resultado de la operación.</p>
+                        </div>
+                        <button class="solution-toggle">Ver solución</button>
+                        <div class="solution">
+                            <div class="code-block">
+                                <pre><code>function calculadora(num1, num2, operador) {
+    switch(operador) {
+        case '+':
+            return num1 + num2;
+        case '-':
+            return num1 - num2;
+        case '*':
+            return num1 * num2;
+        case '/':
+            if (num2 === 0) {
+                return "Error: División por cero";
+            }
+            return num1 / num2;
+        default:
+            return "Operador no válido";
+    }
+}
+
+// Ejemplos de uso
+console.log(calculadora(10, 5, '+')); // 15
+console.log(calculadora(10, 5, '-')); // 5
+console.log(calculadora(10, 5, '*')); // 50
+console.log(calculadora(10, 5, '/')); // 2
+console.log(calculadora(10, 0, '/')); // Error: División por cero</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-section">
+                        <label>
+                            <input type="checkbox" class="completion-checkbox" data-language="javascript" data-section="fundamentals">
+                            Marcar como completado
+                        </label>
+                    </div>
                 </div>
 
                 <div id="functions-content" class="topic-content" style="display: none;">

@@ -182,10 +182,12 @@ h1 {
 
 .topics-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
 }
-
+.topic-content{
+    width:50rem;
+}
 .progress-sidebar {
     width: 300px;
     flex-shrink: 0;
@@ -318,6 +320,68 @@ h1 {
 .topic-list a:hover {
     background-color: var(--hover-bg);
     color: var(--hover-text);
+}
+
+/* Estilos para bloques de código */
+.code-block {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    position: relative;
+}
+
+.code-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.code-block code {
+    display: block;
+    color: var(--text-color);
+}
+
+/* Estilos para ejemplos prácticos */
+.practice-example {
+    background-color: var(--card-bg);
+    border-left: 4px solid var(--border-color);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.practice-example h3 {
+    color: var(--border-color);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.practice-example .description {
+    margin-bottom: 1rem;
+}
+
+.practice-example .solution-toggle {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.practice-example .solution {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.practice-example .solution.visible {
+    display: block;
 }
 
 .nav-title {

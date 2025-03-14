@@ -114,7 +114,9 @@
             </section>
         </div>
     </div>
-    <script>
+    <script type="module">
+        import ProgressTracker from './js/progress.js';
+        
         // Update progress bars
         function updateProgressBars() {
             const gitProgress = ProgressTracker.getLanguageProgress('git').totalProgress;
@@ -131,6 +133,9 @@
 
         // Update progress when the page loads
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize progress tracking system
+            ProgressTracker.init();
+            // Update progress bars
             updateProgressBars();
         });
     </script>

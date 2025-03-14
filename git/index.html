@@ -40,7 +40,7 @@
     <nav class="top-nav">
         <div class="nav-content">
             <ul class="nav-links">
-                <li><a href="/"></svg>Home</a></li>
+                <li><a href="../"></svg>Home</a></li>
                 <li><a href="/git/"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
                 <li><a href="/js/"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
                 <li><a href="/sql/"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
@@ -86,11 +86,75 @@
             <div class="content-area">
                 <div id="basics-content" class="topic-content">
                     <h2>Fundamentos de Git</h2>
-                    <ul class="topic-list">
-                        <li>Inicialización y configuración</li>
-                        <li>Comandos básicos (add, commit, push)</li>
-                        <li>Ramas y fusiones</li>
-                    </ul>
+                    
+                    <h3>Inicialización y configuración</h3>
+                    <p>Para comenzar a usar Git en un proyecto, primero debes inicializar un repositorio:</p>
+                    <div class="code-block">
+                        <pre><code>git init</code></pre>
+                    </div>
+                    
+                    <p>Configura tu identidad para que tus commits tengan la información correcta:</p>
+                    <div class="code-block">
+                        <pre><code>git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"</code></pre>
+                    </div>
+                    
+                    <h3>Comandos básicos</h3>
+                    <p>Añadir archivos al área de preparación:</p>
+                    <div class="code-block">
+                        <pre><code>git add archivo.txt    # Añadir un archivo específico
+git add .            # Añadir todos los archivos modificados</code></pre>
+                    </div>
+                    
+                    <p>Crear un commit con los cambios:</p>
+                    <div class="code-block">
+                        <pre><code>git commit -m "Mensaje descriptivo del cambio"</code></pre>
+                    </div>
+                    
+                    <p>Enviar cambios al repositorio remoto:</p>
+                    <div class="code-block">
+                        <pre><code>git push origin main</code></pre>
+                    </div>
+                    
+                    <h3>Ramas y fusiones</h3>
+                    <p>Crear y cambiar a una nueva rama:</p>
+                    <div class="code-block">
+                        <pre><code>git branch nueva-rama     # Crear rama
+git checkout nueva-rama  # Cambiar a la rama
+
+# O en un solo comando:
+git checkout -b nueva-rama</code></pre>
+                    </div>
+                    
+                    <p>Fusionar una rama con la rama actual:</p>
+                    <div class="code-block">
+                        <pre><code>git merge otra-rama</code></pre>
+                    </div>
+                    
+                    <div class="practice-example">
+                        <h3>Ejercicio práctico: Crear tu primer repositorio</h3>
+                        <div class="description">
+                            <p>Crea un nuevo directorio, inicializa un repositorio Git, añade un archivo README.md con una descripción del proyecto, y realiza tu primer commit.</p>
+                        </div>
+                        <button class="solution-toggle">Ver solución</button>
+                        <div class="solution">
+                            <div class="code-block">
+                                <pre><code>mkdir mi-proyecto
+cd mi-proyecto
+git init
+echo "# Mi Proyecto\n\nEste es mi primer proyecto con Git." > README.md
+git add README.md
+git commit -m "Primer commit: añadir README"</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-section">
+                        <label>
+                            <input type="checkbox" class="completion-checkbox" data-language="git" data-section="basics">
+                            Marcar como completado
+                        </label>
+                    </div>
                 </div>
 
                 <div id="collaboration-content" class="topic-content" style="display: none;">

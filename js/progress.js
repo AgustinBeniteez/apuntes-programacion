@@ -104,6 +104,30 @@ const ProgressTracker = {
 // Initialize progress tracking system
 document.addEventListener('DOMContentLoaded', () => {
     ProgressTracker.init();
+    
+    // Set up solution toggles for practice examples
+    document.querySelectorAll('.solution-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+            const solution = button.nextElementSibling;
+            solution.classList.toggle('visible');
+            button.textContent = solution.classList.contains('visible') ? 'Ocultar solución' : 'Ver solución';
+        });
+    });
+    
+    // Set up completion checkboxes
+    document.querySelectorAll('.completion-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const language = this.dataset.language;
+            const section = this.dataset.section;
+            ProgressTracker.updateSection(language, section, this.checked);
+            
+            // Update progress bars
+            const progressBar = document.querySelector(`[data-section="${section}"] .progress`);
+            if (progressBar) {
+                progressBar.style.width = this.checked ? '100%' : '0%';
+            }
+        });
+    });
 });
 
 // Export the ProgressTracker object
