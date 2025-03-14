@@ -7,6 +7,8 @@ const topicTitles = {
 
 let currentTopicIndex = 0;
 
+import ProgressTracker from '../../js/progress.js';
+
 function updateNavigation() {
     const prevButton = document.getElementById('prev-topic');
     const nextButton = document.getElementById('next-topic');
@@ -21,6 +23,9 @@ function updateNavigation() {
         content.style.display = 'none';
     });
     document.getElementById(`${topics[currentTopicIndex]}-content`).style.display = 'block';
+
+    // Update progress when moving to next section
+    ProgressTracker.updateSection('sql', topics[currentTopicIndex], true);
 }
 
 function setupNavigation() {
@@ -41,6 +46,8 @@ function setupNavigation() {
         }
     });
 
+    // Initialize progress tracking
+    ProgressTracker.init();
     updateNavigation();
 }
 

@@ -40,9 +40,9 @@
     <nav class="top-nav">
         <div class="nav-content">
             <ul class="nav-links">
-                <li><a href="git/index.html"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
-                <li><a href="js/index.html"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
-                <li><a href="sql/index.html"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
+                <li><a href="/git/index.html"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
+                <li><a href="/js/index.html"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
+                <li><a href="/sql/index.html"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
             </ul>
             <button id="theme-toggle" class="theme-toggle">
                 <svg class="theme-icon sun"><use href="#sun-icon"/></svg>
@@ -81,6 +81,28 @@
             </section>
 
             <section class="topic-section">
+                <a href="java/index.html" class="card-link">
+                    <svg class="section-icon large"><use href="#java-icon"/></svg>
+                    <h2>Java</h2>
+                    <div class="progress-bar">
+                        <div class="progress" id="java-progress" style="width: 0%"></div>
+                    </div>
+                    <p class="card-description">Lenguaje orientado a objetos robusto y versátil. Aprende desde los fundamentos hasta características avanzadas de Java.</p>
+                </a>
+            </section>
+
+            <section class="topic-section">
+                <a href="python/index.html" class="card-link">
+                    <svg class="section-icon large"><use href="#python-icon"/></svg>
+                    <h2>Python</h2>
+                    <div class="progress-bar">
+                        <div class="progress" id="python-progress" style="width: 0%"></div>
+                    </div>
+                    <p class="card-description">Lenguaje de programación intuitivo y potente. Domina Python desde los conceptos básicos hasta características avanzadas.</p>
+                </a>
+            </section>
+
+            <section class="topic-section">
                 <a href="sql/index.html" class="card-link">
                     <svg class="section-icon large"><use href="#sql-icon"/></svg>
                     <h2>SQL</h2>
@@ -97,11 +119,14 @@
         function updateProgressBars() {
             const gitProgress = ProgressTracker.getLanguageProgress('git').totalProgress;
             const jsProgress = ProgressTracker.getLanguageProgress('javascript').totalProgress;
+            const javaProgress = ProgressTracker.getLanguageProgress('java').totalProgress;
+            const pythonProgress = ProgressTracker.getLanguageProgress('python').totalProgress;
             const sqlProgress = ProgressTracker.getLanguageProgress('sql').totalProgress;
             document.getElementById('git-progress').style.width = `${gitProgress}%`;
             document.getElementById('javascript-progress').style.width = `${jsProgress}%`;
+            document.getElementById('java-progress').style.width = `${javaProgress}%`;
+            document.getElementById('python-progress').style.width = `${pythonProgress}%`;
             document.getElementById('sql-progress').style.width = `${sqlProgress}%`;
-
         }
 
         // Update progress when the page loads

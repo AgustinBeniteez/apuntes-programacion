@@ -21,13 +21,32 @@ const ProgressTracker = {
             ],
             totalProgress: 0
         },
+        java: {
+            name: 'Java',
+            sections: [
+                { id: 'basics', title: 'Fundamentos de Java', completed: false },
+                { id: 'oop', title: 'Programación Orientada a Objetos', completed: false },
+                { id: 'collections', title: 'Colecciones y Genéricos', completed: false },
+                { id: 'advanced', title: 'Características Avanzadas', completed: false }
+            ],
+            totalProgress: 0
+        },
+        python: {
+            name: 'Python',
+            sections: [
+                { id: 'basics', title: 'Fundamentos de Python', completed: false },
+                { id: 'data-structures', title: 'Estructuras de Datos', completed: false },
+                { id: 'modules', title: 'Módulos y Paquetes', completed: false },
+                { id: 'advanced', title: 'Características Avanzadas', completed: false }
+            ],
+            totalProgress: 0
+        },
         sql: {
             name: 'SQL',
             sections: [
-                { id: 'basics', title: 'Consultas Básicas', completed: false },
-                { id: 'joins', title: 'Joins y Relaciones', completed: false },
-                { id: 'advanced', title: 'Consultas Avanzadas', completed: false },
-                { id: 'optimization', title: 'Optimización', completed: false }
+                { id: 'fundamentals', title: 'Fundamentos de Bases de Datos', completed: false },
+                { id: 'queries', title: 'Consultas SQL', completed: false },
+                { id: 'management', title: 'Gestión de Bases de Datos', completed: false }
             ],
             totalProgress: 0
         }

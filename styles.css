@@ -181,7 +181,8 @@ h1 {
 }
 
 .topics-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
 
@@ -317,6 +318,15 @@ h1 {
 .topic-list a:hover {
     background-color: var(--hover-bg);
     color: var(--hover-text);
+}
+
+.nav-title {
+    width: 300px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
 }
 
 @media (max-width: 768px) {
