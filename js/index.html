@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript - Apuntes de Programación</title>
+    <link rel="stylesheet" href="../styles.css">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="js-icon" viewBox="0 0 448 512">
+            <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM243.8 381.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z"/>
+        </symbol>
+        <symbol id="sun-icon" viewBox="0 0 24 24">
+            <path d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm7.071 2.929a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zm-14.142 0a1 1 0 0 1 1.414 0l.707.707A1 1 0 0 1 5.636 8.05l-.707-.707a1 1 0 0 1 0-1.414zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm-8 4a1 1 0 0 1 1 1 1 1 0 1 1-2 0 1 1 0 0 1 1-1zm16 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM5.636 15.95a1 1 0 0 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707zm12.728 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM12 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1z"/>
+        </symbol>
+        <symbol id="moon-icon" viewBox="0 0 24 24">
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 3z"/>
+        </symbol>
+    </svg>
+    <script type="module">
+        import { toggleTheme, detectColorScheme } from '../js/theme.js';
+        import ProgressTracker from '../js/progress.js';
+
+        // Initial theme detection
+        detectColorScheme();
+
+        // Set up theme toggle button
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+        // Update progress when content is marked as completed
+        function updateProgress() {
+            const progress = ProgressTracker.getLanguageProgress('javascript');
+            document.querySelectorAll('[data-section]').forEach(section => {
+                const sectionName = section.dataset.section;
+                if (progress.sections[sectionName]) {
+                    section.classList.add('completed');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', updateProgress);
+    </script>
+    <script src="../js/shared-navigation.js"></script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../git/index.html"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
+                <li><a href="../sql/index.html"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
+            </ul>
+            <div class="nav-title">
+                <svg class="nav-icon"><use href="#js-icon"/></svg>
+                <h1>JavaScript</h1>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">
+                <svg class="theme-icon sun"><use href="#sun-icon"/></svg>
+                <svg class="theme-icon moon"><use href="#moon-icon"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+
+
+        <div class="topics-container">
+            <div class="progress-sidebar">
+                <section class="topic-section" data-section="fundamentals">
+                    <h2>Fundamentos de JavaScript</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </section>
+
+                <section class="topic-section" data-section="advanced">
+                    <h2>Conceptos Avanzados</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </section>
+
+                <section class="topic-section" data-section="practical">
+                    <h2>Aplicaciones Prácticas</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="content-area">
+                <div id="fundamentals-content" class="topic-content">
+                    <h2>Fundamentos de JavaScript</h2>
+                    <ul class="topic-list">
+                        <li>Variables, tipos de datos y operadores</li>
+                        <li>Estructuras de control y funciones</li>
+                        <li>Arrays y objetos</li>
+                    </ul>
+                </div>
+
+                <div id="advanced-content" class="topic-content" style="display: none;">
+                    <h2>Conceptos Avanzados</h2>
+                    <ul class="topic-list">
+                        <li>Programación orientada a objetos</li>
+                        <li>Asincronía y promesas</li>
+                        <li>Módulos y ES6+</li>
+                    </ul>
+                </div>
+
+                <div id="practical-content" class="topic-content" style="display: none;">
+                    <h2>Aplicaciones Prácticas</h2>
+                    <ul class="topic-list">
+                        <li>Manipulación del DOM</li>
+                        <li>APIs y fetch</li>
+                        <li>Frameworks y librerías populares</li>
+                    </ul>
+                </div>
+
+                <div class="content-navigation">
+                    <button class="nav-button" id="prev-topic" disabled>← Anterior</button>
+                    <span class="current-topic">Fundamentos de JavaScript</span>
+                    <button class="nav-button" id="next-topic">Siguiente →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

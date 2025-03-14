@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL - Apuntes de Programación</title>
+    <link rel="stylesheet" href="../styles.css">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="sql-icon" viewBox="0 0 448 512">
+            <path d="M448 73.143v45.714C448 159.143 347.667 192 224 192S0 159.143 0 118.857V73.143C0 32.857 100.333 0 224 0s224 32.857 224 73.143zM448 176v102.857C448 319.143 347.667 352 224 352S0 319.143 0 278.857V176c48.125 33.143 136.208 48.572 224 48.572S399.874 209.143 448 176zm0 160v102.857C448 479.143 347.667 512 224 512S0 479.143 0 438.857V336c48.125 33.143 136.208 48.572 224 48.572S399.874 369.143 448 336z"/>
+        </symbol>
+        <symbol id="sun-icon" viewBox="0 0 24 24">
+            <path d="M12 3a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1zm7.071 2.929a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zm-14.142 0a1 1 0 0 1 1.414 0l.707.707A1 1 0 0 1 5.636 8.05l-.707-.707a1 1 0 0 1 0-1.414zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm-8 4a1 1 0 0 1 1 1 1 1 0 1 1-2 0 1 1 0 0 1 1-1zm16 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM5.636 15.95a1 1 0 0 1 1.414 1.414l-.707.707a1 1 0 0 1-1.414-1.414l.707-.707zm12.728 0l.707.707a1 1 0 0 1-1.414 1.414l-.707-.707a1 1 0 0 1 1.414-1.414zM12 19a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1z"/>
+        </symbol>
+        <symbol id="moon-icon" viewBox="0 0 24 24">
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 3z"/>
+        </symbol>
+    </svg>
+    <script type="module">
+        import { toggleTheme, detectColorScheme } from '../js/theme.js';
+        import ProgressTracker from '../js/progress.js';
+
+        // Initial theme detection
+        detectColorScheme();
+
+        // Set up theme toggle button
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+        // Update progress when content is marked as completed
+        function updateProgress() {
+            const progress = ProgressTracker.getLanguageProgress('sql');
+            document.querySelectorAll('[data-section]').forEach(section => {
+                const sectionName = section.dataset.section;
+                if (progress.sections[sectionName]) {
+                    section.classList.add('completed');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', updateProgress);
+    </script>
+    <script src="../js/shared-navigation.js"></script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../git/index.html"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
+                <li><a href="../js/index.html"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
+            </ul>
+            <div class="nav-title">
+                <svg class="nav-icon"><use href="#sql-icon"/></svg>
+                <h1>SQL</h1>
+            </div>
+            <button id="theme-toggle" class="theme-toggle">
+                <svg class="theme-icon sun"><use href="#sun-icon"/></svg>
+                <svg class="theme-icon moon"><use href="#moon-icon"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+
+
+        <div class="topics-container">
+            <div class="progress-sidebar">
+                <section class="topic-section" data-section="fundamentals">
+                    <h2>Fundamentos de Bases de Datos</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </section>
+
+                <section class="topic-section" data-section="queries">
+                    <h2>Consultas SQL</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </section>
+
+                <section class="topic-section" data-section="management">
+                    <h2>Gestión de Bases de Datos</h2>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 0%"></div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="content-area">
+                <div id="fundamentals-content" class="topic-content">
+                    <h2>Fundamentos de Bases de Datos</h2>
+                    <ul class="topic-list">
+                        <li>Conceptos básicos de bases de datos relacionales</li>
+                        <li>Diseño de esquemas y normalización</li>
+                        <li>Tipos de datos y restricciones</li>
+                    </ul>
+                </div>
+
+                <div id="queries-content" class="topic-content" style="display: none;">
+                    <h2>Consultas SQL</h2>
+                    <ul class="topic-list">
+                        <li>SELECT, INSERT, UPDATE, DELETE</li>
+                        <li>JOIN y subconsultas</li>
+                        <li>Funciones agregadas y GROUP BY</li>
+                    </ul>
+                </div>
+
+                <div id="management-content" class="topic-content" style="display: none;">
+                    <h2>Gestión de Bases de Datos</h2>
+                    <ul class="topic-list">
+                        <li>Índices y optimización</li>
+                        <li>Transacciones y ACID</li>
+                        <li>Seguridad y permisos</li>
+                    </ul>
+                </div>
+
+                <div class="content-navigation">
+                    <button class="nav-button" id="prev-topic" disabled>← Anterior</button>
+                    <span class="current-topic">Fundamentos de Bases de Datos</span>
+                    <button class="nav-button" id="next-topic">Siguiente →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
