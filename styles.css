@@ -73,12 +73,57 @@ body {
     border-radius: 4px;
     margin: 1rem 0;
     overflow: hidden;
+    position: relative;
 }
 
 .progress {
     height: 100%;
     background-color: var(--border-color);
-    transition: width 0.3s ease;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Vertical progress connector lines */
+.topic-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 2rem;
+    background-color: var(--bg-color);
+    left: 50%;
+    bottom: -2rem;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Connector circles removed as requested */
+/* .topic-section:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: var(--border-color);
+    border-radius: 50%;
+    left: 50%;
+    bottom: -1rem;
+    transform: translateX(-50%);
+    z-index: 3;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulse 2s infinite;
+} */
+
+@keyframes pulse {
+    0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
 }
 
 .nav-links {
@@ -195,6 +240,7 @@ h1 {
 .progress-sidebar {
     width: 300px;
     flex-shrink: 0;
+    position: relative;
 }
 
 .content-area {
@@ -240,7 +286,9 @@ h1 {
     border-radius: 10px;
     box-shadow: 0 4px 6px var(--card-shadow);
     transition: transform 0.3s ease;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .topic-section:hover {
