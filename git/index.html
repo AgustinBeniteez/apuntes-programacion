@@ -29,12 +29,18 @@
     <script type="module">
         import { toggleTheme, detectColorScheme } from '../js/theme.js';
         import UnifiedNavigation from '../js/unified-navigation.js';
+        import LanguageBanner from '../js/language-banner.js';
 
         // Initial theme detection
         detectColorScheme();
 
         // Set up theme toggle button
         document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        
+        // Initialize language banner
+        document.addEventListener('DOMContentLoaded', () => {
+            LanguageBanner.init();
+        });
     </script>
 </head>
 <body>
@@ -42,16 +48,12 @@
         <div class="nav-content">
             <ul class="nav-links">
                 <li><a href="../"></svg>Home</a></li>
-                <li><a href="/git/index.html"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
-                <li><a href="/js/index.html"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
-                <li><a href="/java/index.html"><svg class="nav-icon"><use href="#java-icon"/></svg>Java</a></li>
-                <li><a href="/python/index.html"><svg class="nav-icon"><use href="#python-icon"/></svg>Python</a></li>
-                <li><a href="/sql/index.html"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
+                <li><a href="git/index.html"><svg class="nav-icon"><use href="#git-icon"/></svg>Git</a></li>
+                <li><a href="js/index.html"><svg class="nav-icon"><use href="#js-icon"/></svg>JavaScript</a></li>
+                <li><a href="java/index.html"><svg class="nav-icon"><use href="#java-icon"/></svg>Java</a></li>
+                <li><a href="python/index.html"><svg class="nav-icon"><use href="#python-icon"/></svg>Python</a></li>
+                <li><a href="sql/index.html"><svg class="nav-icon"><use href="#sql-icon"/></svg>SQL</a></li>
             </ul>
-            <div class="nav-title">
-                <svg class="nav-icon"><use href="#git-icon"/></svg>
-                <h1>Git</h1>
-            </div>
             <button id="theme-toggle" class="theme-toggle">
                 <svg class="theme-icon sun"><use href="#sun-icon"/></svg>
                 <svg class="theme-icon moon"><use href="#moon-icon"/></svg>
@@ -60,7 +62,11 @@
     </nav>
 
     <div class="container">
-
+        <header>
+            <svg class="section-icon large"><use href="#git-icon"/></svg>
+            <h1>Git</h1>
+            <p>Aprende el lenguaje de programación más versátil y fácil de aprender</p>
+        </header>
 
         <div class="topics-container">
             <div class="progress-sidebar">
