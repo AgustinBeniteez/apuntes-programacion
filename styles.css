@@ -130,7 +130,7 @@ body {
 .theme-icon {
     width: 24px;
     height: 24px;
-    fill: var(--header-text);
+    fill: var(--header-bg);
     position: absolute;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -138,20 +138,24 @@ body {
 .theme-icon.sun {
     opacity: 0;
     transform: rotate(-90deg) scale(0);
+    
 }
 
 .theme-icon.moon {
     opacity: 1;
     transform: rotate(0) scale(1);
+    fill: var(--header-text);
 }
 
 [data-theme="light"] .theme-icon.sun {
+    height: 24px;
     opacity: 1;
     transform: rotate(0) scale(1);
 }
 
 [data-theme="light"] .theme-icon.moon {
     opacity: 0;
+
     transform: rotate(90deg) scale(0);
 }
 
@@ -391,6 +395,7 @@ h1 {
     align-items: baseline;
     justify-content: center;
     gap: 10px;
+    color: var(--header-text);
 }
 
 @media (max-width: 768px) {
